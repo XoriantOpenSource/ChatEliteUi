@@ -1,0 +1,42 @@
+<div class="col m10 offset-m2 _infoComponent">
+    <ul id="tabs-swipe-demo" class="tabs">
+        <li class="tab col m4 xl4 _recentChatIcon">
+            <a class="active" href="#_recentChatComponent">
+                <span class="_title">Recent chats</span>
+            </a>
+            <!-- ko if: _totoalUnreadMessages() > 0 -->
+            <span class="_triangle"></span>
+            <span class="_superScript" data-bind="text : _totoalUnreadMessages()"></span>
+            <!-- /ko -->
+        </li>
+        <li class="tab col m4 xl4">
+            <a href="#_groupsComponent" data-bind="click : $component.showGroupsComponent">
+                <span class="_title">Groups</span>
+            </a>
+        </li>
+        <li class="tab col m4 xl4">
+            <a href="#_usersComponent" data-bind="click : $component.showUsersComponent">
+                <span class="_title">Users</span>
+            </a>
+        </li>
+    </ul>
+    <!-- recentChatComponent  -->
+    <div id="_recentChatComponent" class="col m12">
+        <recent-component></recent-component>
+    </div>
+    <!-- groupsComponent -->
+    <div id="_groupsComponent" class="col m12">
+        <!-- ko if: _showGroupsComponent() -->
+        <groups-component></groups-component>
+        <!-- /ko -->
+    </div>
+    <!-- usersComponent -->
+    <div id="_usersComponent" class="col m12">
+        <!-- ko if: _showUsersComponent -->
+        <users-component></users-component>
+        <!-- /ko -->
+    </div>
+
+</div>
+
+<div id="_infoOverlay"></div>

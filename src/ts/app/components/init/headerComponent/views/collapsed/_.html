@@ -1,0 +1,40 @@
+<div class="_collapse_action_c">
+    <span class="_collapse_title"></span>
+    <div class="valign-wrapper _collapse_action_btns_c">
+        <i class="material-icons _header_collapse_action_c" title="collapse" data-bind="click:collapse">arrow_drop_down</i>
+        <a href="#" class="_expand_c" title="Expand" data-bind="click:$component.expandChat">
+            <img class="_expand_icon_c" src="${require(`./../../../icons/icon-exapnd.svg`)}">
+        </a>
+
+        <!--<i class="material-icons">close</i>-->
+        <!--<i class="material-icons">arrow_drop_up</i>-->
+    </div>
+</div>
+<nav class="nav-wrapper_c">
+    <div class="nav-wrapper">
+        <a href="#" data-bind="click : showHomeScreen">
+            <img src="${require(`./../../../icons/logo.svg`)}" alt="" data-intro="ChatElite Support" data-position="bottom">
+        </a>
+        <a href="#" class=_menu_c>
+            <i class="material-icons  dropdown-button" data-activates='dropdown2_c' style="padding:0px">menu</i>
+        </a>
+    </div>
+
+    <ul id='dropdown2_c' class='dropdown-content'>
+        <li>
+            <a id="pf" class="modal-trigger" href="#_modal4" data-bind="click: function() { $component.showProfile.bind($component, userDetails())();}">Profile</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Modal Structure -->
+<div id="_modal4" class="modal modal-fixed-footer">
+    <div class="modal-content"> -->
+        <!-- ko if: showProfileComponent -->
+        <profile-component params="res:pfDetails()"></profile-component>
+        <!-- /ko -->
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+</div>

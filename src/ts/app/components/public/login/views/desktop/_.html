@@ -1,0 +1,43 @@
+<div style="height: 100%;
+    background-color: lightslategrey;
+    position: absolute;
+    top:0;
+    width:100%;
+    z-index: 2;
+    /* Internet Explorer 10 */
+    display:-ms-flexbox;
+    -ms-flex-pack:center;
+    -ms-flex-align:center;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari, Opera, and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    ">
+    <div style="text-align: center;"> <strong style="font-size: 20px; color: white;">Login</strong>
+        <br>
+        <input style="text-align: center; font-size: 100%; margin-top: 5px; margin-bottom: 5px; padding: 5px;" type="text" placeholder="username"
+            data-bind="value:login_user_username" /><br>
+        <input style="text-align: center; font-size: 100%; margin-bottom: 5px; padding: 5px;" type="password" placeholder="password"
+            data-bind="value:login_user_password" /><br>
+        <button style="border: none; color: white; padding: 5px 10px; font-size: 100%; margin: 4px 2px; cursor: pointer; background-color: #008CBA;"
+            data-bind="click:login">Login</button>
+    </div>
+    <div style="width:5%"></div>
+    <div style="text-align: center;"> <strong style="font-size: 20px; color: white;">Register</strong>
+        <br>
+        <input style="text-align: center; font-size: 100%; margin-top: 5px; margin-bottom: 5px; padding: 5px;" type="text" placeholder="username"
+            data-bind="value:register_user_username" /><br>
+        <input style="text-align: center; font-size: 100%; margin-bottom: 5px; padding: 5px;" type="password" placeholder="password"
+            data-bind="value:register_user_password" /><br>
+        <input style="text-align: center; font-size: 100%; margin-bottom: 5px; padding: 5px;" type="text" placeholder="grade" data-bind="value:register_user_grade"
+        /><br>
+        <button style="border: none; color: white; padding: 5px 10px; font-size: 100%; margin: 4px 2px; cursor: pointer; background-color: #008CBA;"
+            data-bind="click:register">Register</button>
+    </div>
+</div>

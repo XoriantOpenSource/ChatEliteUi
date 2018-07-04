@@ -1,0 +1,279 @@
+<div class="_introComponent _side-panel">
+
+    <!-- ko if: groupDetails().isP2PChat -->
+    <div class="_user_block _user_back">
+        <p class="_user_chat_info">You are chatting with</p>
+        <div class="row" data-bind="css : $component.otherUsersOnlineStatus($data)">
+            <!-- ko if: $component.otherUserProfileImage($data) -->
+            <img data-bind="attr:{ src: $component.otherUserProfileImage($data) }" class="_image_user circle responsive-img" alt="">
+            <!-- /ko -->
+
+            <!-- ko ifnot: $component.otherUserProfileImage($data) -->
+            <img src="${require(`./../../../../icons/icon-users-active-40-40.svg`)}" alt="" class="_image_user circle responsive-img">
+            <!-- /ko -->
+        </div>
+
+        <div class="row _user_back">
+            <div class="_user_title">
+                <div class="truncate" style="display: inline-block;" id="_groupTitle" data-bind="text: groupDetails().subject"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="_user_email_id"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko ifnot: groupDetails().isP2PChat -->
+    <div class="row _group_block">
+
+        <div class="row">
+            <img src="${require(`./../../../../icons/icon-groups-active.svg`)}" alt="" class="_image_group">
+        </div>
+
+        <div class="row">
+            <div data-intro="Click to change the group name" data-position="right" class="_group_title">
+                <div class="col m11 truncate" style="display: inline-block;" id="_groupTitle" data-bind="attr:{title:$component.groupDetails().subject},text: $component.groupDetails().subject , click : $component.editSubject.bind($data, groupDetails())"></div>
+                <img class="col m1" src="${require(`./../../../../icons/group-name-edit.svg`)} " alt="" data-bind="attr:{ title:'Edit Group name'},click : $component.focusonGroupTitle">
+            </div>
+            <p class="col m12 _group_member_count">
+                <span data-bind="text : $component.groupMembersCount()"></span> Members</p>
+        </div>
+
+        <div class="row _groupsUsersBlock">
+            <!-- ko if: showLoader() -->
+            <loader-component style="text-align: center;"></loader-component>
+            <!-- /ko -->
+            <!-- for loop -->
+            <div data-bind="foreach : groupDetails().users">
+                <div data-bind="css : { 'row' : $component.classRow($index) } , visible: $index() < $component.memebersLimit()">
+                    <div class="col m4 " data-bind="css : $component.userStatus($data),event: { mouseover: $component.enableRemoveDetails.bind($data, _id), mouseout: $component.disableRemoveDetails }"
+                        style="position: relative;">
+                        <!-- ko if: $component.groupDetails().created_by_user === $component.currentUserId() -->
+                        <span data-bind="visible: _id !== $component.currentUserId() && $component.removeDetailsEnabled() === _id">
+                            <div class="_removeUser" data-bind="popOver :{trigger:'click' , placement:'right' , width: 200}, clickBubble: false">
+                                <span title="Remove from group"> X </span>
+                                <div template data-bind='scrollBar'>
+                                    <div class="row">
+                                        <div class="col m10 offset-m1 _warningText">
+                                            Are you sure you want remove
+                                            <span data-bind="text : user_name"></span> ?
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <!-- ko ifnot : $component.showRemoveUserLoader -->
+                                        <div class="col m4 offset-m2">
+                                            <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click : $component.closeAllPopover">No</button>
+                                        </div>
+                                        <div class="col m4 offset-m1">
+                                            <button class="waves-effect waves-light btn light-blue _transferButton" data-bind="click : $component.removeUser.bind($data, _id, user_name)">Yes</button>
+                                        </div>
+                                        <!-- /ko -->
+
+                                        <!-- ko if : $component.showRemoveUserLoader -->
+                                        <div class="col m4 offset-m1">
+                                            <button class="waves-effect waves-light btn light-blue _transferButton" disabled>Removing...</button>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                        <!-- /ko -->
+
+                        <!-- ko if: $component.profileImg($data) -->
+                        <img data-bind="attr:{ src: $component.profileImg($data) , title: user_name}" class="circle responsive-img _user_image
+                    " alt="">
+                        <!-- /ko -->
+
+                        <!-- ko ifnot: $component.profileImg($data) -->
+                        <img class="circle responsive-img _user_image" src="${require(`./../../../../icons/icon-users-active-40-40.svg`)}
+                    " alt="" data-bind="attr : { title : user_name }">
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+
+            <div data-intro="Click to add user to the group" data-position="right" id="_add_user_btn" class="col m4
+                    _add_user_btn">
+                <a class="_add_user" title="Add user" data-bind="click : $component.showAddUserSearch">
+                    <i class="material-icons ">add</i>
+                </a>
+            </div>
+        </div>
+        <!-- ko if: $component.groupMembersCount() > 5 -->
+        <div class="_line"></div>
+        <div class="_arrow_expand">
+            <i id="_expandArrow" class="material-icons" data-bind="click : $component.expandGroupMembers">expand_more</i>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if : showAddUser -->
+        <div class="row _search">
+            <div data-intro="Search the user here" data-position="right" class="col m11">
+                <input placeholder="Search for users" id="_introUserSearch" data-bind="value: $component.Query, valueUpdate:
+                    'keyup'" />
+            </div>
+            <div class="col m1">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+
+        <div data-bind="visible : $component.Query().length>= 0 && $component.showUserList()">
+            <div class="_find_users" id="_find-users" data-bind="foreach: searchUsersResults()">
+                <div class="row _user" data-bind="visible: $index() < 5">
+                    <div class="_search_users">
+                        <div class="col m9">
+                            <span class="_user_name truncate" data-bind="text : user_name , attr: { title : user_name}"></span>
+                        </div>
+                        <div class="col m3">
+                            <!-- ko ifnot:  $component.isAddedOrNot($data) -->
+                            <button class="_user_add center-align" data-bind="click:$component.addUser">Add</button>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: groupDetails().isP2PChat -->
+    <div class="row _user_back">
+        <div class="col m12">
+            <div class="center-align _user_add_message">
+                <div class="row">Add new users to</div>
+                <div class="row">create group with
+                    <span data-bind="text:groupDetails().subject"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row _add_user_ind_block" data-intro="Click to add user to the group" data-position="right">
+
+        <a class="_add_user_ind" title="Add user" data-bind="click : $component.showAddUserSearch">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+
+    <!-- ko if : showAddUser -->
+    <div class="row _search">
+        <div data-intro="Search the user here" data-position="right" class="col m11">
+            <input placeholder="Search for users" id="_introUserSearch" data-bind="value: $component.Query, valueUpdate:
+                'keyup'" />
+        </div>
+        <div class="col m1">
+            <i class="material-icons">search</i>
+        </div>
+    </div>
+
+    <div data-bind="visible : $component.Query().length>= 0 && $component.showUserList()">
+        <div class="_find_users" data-bind="foreach: searchUsersResults()">
+            <div class="row _user" data-bind="visible: $index() < 5">
+                <div class="_search_users">
+                    <div class="col m9">
+                        <span class="_user_name truncate" data-bind="text : user_name ,  attr: { title : user_name}"></span>
+                    </div>
+                    <div class="col m3">
+                        <!-- ko ifnot:  $component.isAddedOrNot($data) -->
+                        <button class="_user_add center-align" data-bind="click:$component.addUser">Add</button>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- /ko -->
+
+    <!-- ko if: groupDetails().isP2PChat -->
+    <div class="row _commonGroups_box">
+        <div class="col m12">
+            <div class="_commonGroups_icon" data-intro="Common groups are shown here" data-position="right">
+                <img src="${require(`./../../../../icons/icon-groups-active.svg`)}" class="responsive-img" />&nbsp;Groups in Common
+            </div>
+            <hr class="_header-separator ">
+            <div class="_commonGroups-content">
+                <!-- ko if: showLoader3() -->
+                <loader-component style="text-align: center;"></loader-component>
+                <!-- /ko -->
+
+                <!--ko ifnot: showLoader3() -->
+                <!-- for loop -->
+                <div data-bind="foreach: commonGroupsArray">
+                    <div class="_grpName">
+                        <p class="truncate" data-bind="text : subject ,  attr: { title : subject}"></p>
+                    </div>
+                </div>
+                <!-- ko if: commonGroupsArray().length === 0-->
+                <div class="_grpName">No groups in common!</div>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <div class="row _favorite_box">
+        <div class="col m12">
+            <div class="_favourite_icon" data-intro="Favourite marked message are shown here" data-position="right">
+                <img src="${require(`./../../../../icons/icon-marked-favourite.svg`)}" class="responsive-img" />&nbsp;Favourite messages
+            </div>
+            <hr class="_header-separator ">
+            <div class="_favourite-content">
+                <!-- ko if: showLoader2() -->
+                <loader-component style="text-align: center;"></loader-component>
+                <!-- /ko -->
+
+                <!-- ko ifnot: showLoader2() -->
+
+                <!-- for loop -->
+                <div data-bind="foreach: favMessagesArray">
+                    <div class="_fav_message">
+                        <p class="truncate" data-bind="text : text ,  attr: { title : text},messageText"></p>
+                        <span class="_fav_date" data-bind="momentDate: created_date_time"></span>
+                    </div>
+                </div>
+
+                <!-- ko if: favMessagesArray().length === 0 -->
+                <div class="_fav_message">No favourite messages in group!</div>
+                <!-- /ko -->
+
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- ko ifnot: groupDetails().isP2PChat -->
+    <div class="row _link_box">
+        <div class="col m12 ">
+            <div class="_links_shared" data-intro="Saved links" data-position="right">
+                <img src="${require(`./../../../../icons/icon-links.svg`)}" class="responsive-img" alt=" " /> &nbsp;Shared Links
+            </div>
+            <hr class="_header-separator ">
+            <div class="_link_content">
+                <!-- ko if: showLoader1() -->
+                <loader-component style="text-align: center;"></loader-component>
+                <!-- /ko -->
+
+                <!-- ko ifnot: showLoader1() -->
+                <!-- for loop -->
+                <div data-bind="foreach: linksArray">
+                    <div class="_link_text">
+                        <a class="truncate" target="_blank" data-bind="text : txt , attr: { title:txt, href : txt }"></a>
+                        <span class="_link_date" data-bind="momentDate: created_date_time"></span>
+                    </div>
+                </div>
+
+                <!-- ko if: linksArray().length === 0 -->
+                <div class="_link_text">No links in group!</div>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

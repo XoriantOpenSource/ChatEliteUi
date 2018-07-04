@@ -1,0 +1,54 @@
+._homeScreen{
+
+    ._welcome_msg {
+        p {
+            font-size:2.5rem;
+            color: #465B65;
+            margin-bottom: 0px;
+            margin-top: 1vh;
+        }
+    
+        ._welcome_msg_bold{
+            font-weight: bold;
+        }
+    
+        ._welcome_msg_text{
+            color: #87959B;
+            p{
+                font-size:1.4rem;
+            }
+        }
+    }
+
+    ._feature-carousal {
+
+        .carousel {
+        
+            height: 45vh !important;
+    
+            .indicators {
+                
+                .indicator-item {
+                    background-color: #9E9E9E !important;
+                }
+                
+                .indicator-item.active {
+                    background-color: #4CAF50 !important;
+                }
+            }
+        }
+
+        .card{
+            box-shadow: none;
+        }
+    }
+}
+
+._homeScreen {
+    ._welcome_msg p{
+        @include add_theme(intro_title,null);
+    }
+    .card-image img{
+        @include add_theme(null,background_color);
+    }
+}

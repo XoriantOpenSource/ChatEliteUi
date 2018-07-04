@@ -1,0 +1,135 @@
+<!-- ko if : allUsersArray().length == 0 -->
+<div class="row">
+    <div class="row _no-user-text">
+        <div class="row">
+            <div class="col m12 ">
+                Don’t have any
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m12">
+                <strong>Users?</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row _no-user-text-1">
+        <div class="row">
+            <div class="col m12">
+                Search User to add
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m12">
+                in your list
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+
+<div class="row _search">
+    <div data-intro="Search the user here " data-position="left" class="col m11">
+        <!-- <div class="chips-autocomplete"></div> -->
+        <input placeholder="Search for users" id="_userSearch" data-bind="value: $component.Query, valueUpdate: 'keyup'" />
+    </div>
+    <div class="col m1">
+        <i class="material-icons">search</i>
+    </div>
+</div>
+
+<div data-bind="visible : $component.Query().length >= 0 && showUsersLists()">
+    <div class="_find_users" data-bind="foreach: searchUsersResults()">
+        <div class="row _user" data-bind="visible: $index() < 5">
+            <div class="_search_users">
+                <div class="col m9">
+                    <!-- ko ifnot:  $component.isAddedOrNot($data) -->
+                    <span class="_user_name truncate" data-bind="text : user_name, attr: { title : user_name}"></span>
+                    <!-- /ko -->
+                    <!-- ko if: $component.isAddedOrNot($data) -->
+                    <span class="_user_name _user_clickable truncate" data-bind="text : user_name,click:$component.showp2pchat , attr: { title : user_name}"></span>
+                    <!-- /ko -->
+
+                </div>
+                <div class="col m3">
+                    <!-- ko ifnot:  $component.isAddedOrNot($data) -->
+                    <button class="_user_add center-align" data-bind="click:$component.addUserInTickerList">Add</button>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="_users-component">
+    <!-- ko if: showLoader -->
+    <loader-component></loader-component>
+    <!-- /ko -->
+    <div id="_tickers" data-bind="scrollBar : $component.allUsersArray(),chardin:{'data_intro':'Click on the user to start conversation','data_position':'left',data:$component.allUsersArray().length}">
+        <div class="_user_list" data-bind="foreach: allUsersArray">
+            <div class="row _user ">
+                <div class="col m2 _status" data-bind="css : $component.statusClass($data),click: function() { $component.showProfile.bind($component,
+                   $data)();}  ">
+                    <!-- ko if: $component.profileImg($data) -->
+                    <a class="_im modal-trigger" href="#_modal4">
+                        <img data-bind="attr:{ src: profile_img } " class="circle responsive-img " alt=" ">
+                    </a>
+                    <!-- /ko -->
+
+                    <!-- ko ifnot: $component.profileImg($data) -->
+                    <a class="_im modal-trigger" href="#_modal4">
+                        <img src="${require(`./../../../../icons/icon-users-active-40-40.svg`)} " alt=" " class="circle responsive-img ">
+                    </a>
+                    <!-- /ko -->
+                </div>
+
+                <div class="col m7 " data-bind="click : $component.showp2pchat ">
+                    <div class="_chatInfo ">
+                        <p class="truncate " data-bind="text : user_name, attr: { title : user_name}"></p>
+                        <p data-bind="text : ($component.statusClass($data)).slice(1)"></p>
+                        <p>
+                            <span data-bind="momentDate:last_online"></span>,
+                            <span data-bind="moment:{date_time:last_online,observe:$component.searchUsersResults()}"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col m1 "></div>
+                <div class="col m1 "></div>
+                <div class="col m1 ">
+                    <div class="fixed-action-btn horizontal ">
+                        <a class=" ">
+                            <i class="material-icons _menuIcon ">more_vert</i>
+                        </a>
+                        <ul>
+                            <li>
+
+                                <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto', width: '250px',padding:'false', title:'Delete User'}">
+                                    <img src="${require(`./../../../../icons/icon-delete-red.svg`)}" alt="" class="responsive-img _slidInIcons" title="Remove User"
+                                    />
+                                    <div template>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col m10 offset-m1 _warningText">
+                                                * This user will be permanently deleted.Are you sure you want to delete it?.
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col m4 offset-m1">
+                                                <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click:$component.removeUser,clickBubble:false">Yes</button>
+                                            </div>
+                                            <div class="col m4 offset-m2">
+                                                <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click:$component.closePopover">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

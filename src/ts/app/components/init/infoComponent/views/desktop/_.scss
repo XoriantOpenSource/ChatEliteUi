@@ -1,0 +1,119 @@
+._infoComponent {
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    background-color: $_iComponent-background;
+    overflow-x: hidden;
+    border-left:1px solid #C8C8C8;
+
+    .tabs{
+        height: 60px;    
+    
+        .tab{
+            line-height: 60px;
+            height: 60px;
+            position: inherit;
+        
+            a{
+                padding : 0px;
+                width : 99%;
+                margin-right: 1px;
+                background-color: #E6E6E6;
+            
+                img{
+                    margin-top: 12px;
+                }
+
+                ._title{
+                    display: block;
+                    margin-top: 14px;
+                    font-weight: bold;
+                    font-family: Roboto;
+                    color:#C6C6C6;
+                    font-size: 8px;
+                }
+
+                img._inactive{
+                    display : none;
+                }
+            }
+
+            a.active{
+                background-color: transparent;
+                border-top:4px solid #15B65A;
+                ._title{ color: #455A64; margin-top: 10px;}
+            }
+
+            ._superScript{
+                position: absolute;
+                top: -21px;
+                right: 1px;
+                z-index: 2;
+                font-size: 11px;
+                color: white;
+            }
+    
+            ._triangle{
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-radius: 0px;
+                border-width: 13px;
+                border-right-color: #DA5C6B;
+                border-top-color: #DA5C6B;
+                z-index:1;
+            }
+        }
+
+        li:nth-child(1) a{ background-color: $_tabs-background; background-image: url("./../ts/app/components/init/icons/icon-recent-chats-inactive.svg"); background-repeat: no-repeat; background-position: 50% 35%; }
+        li:nth-child(1) a.active{ background-color: $_tabs-active-background; background-image: url("./../ts/app/components/init/icons/icon-recent-chats-active.svg"); background-position: 50% 30%;}
+
+        li:nth-child(2) a{ background-color: $_tabs-background; background-image: url("./../ts/app/components/init/icons/icon-groups-inactive.svg"); background-repeat: no-repeat; background-position: 50% 35%; }
+        li:nth-child(2) a.active{ background-color: $_tabs-active-background; background-image: url("./../ts/app/components/init/icons/icon-groups-active.svg"); background-position: 50% 30%;}
+
+        li:nth-child(3) a{ background-color: $_tabs-background; background-image: url("./../ts/app/components/init/icons/icon-users-inactive.svg"); background-repeat: no-repeat; background-position: 50% 35%; }
+        li:nth-child(3) a.active{ background-color: $_tabs-active-background; background-image: url("./../ts/app/components/init/icons/icon-users-active.svg"); background-position: 50% 30%;}
+
+    }
+
+    ._search{
+        @extend __search_base;
+    }
+
+    ._user {
+        @extend __user_base;
+    }
+    
+    ._userActive{
+        background-color: white;
+        border-right: 3px solid #486A93;
+    }
+}
+
+._infoComponent{
+    @include add_theme(null,card_background_color,card_background_color);
+    .tabs,.tabs .tab a{
+        @include add_theme(null,background_color);   
+    }
+    .tabs .tab .active{
+        @include add_theme(null,card_background_color);   
+    }
+    
+    ._userActive{
+        @include add_theme(null,active_back_color);
+    }
+    ._user{
+        p:nth-child(1),i._menuIcon{
+            @include add_theme(info_name,null);
+        }
+        p:nth-child(2),p:nth-child(3){ @include add_theme(info_status,null)};
+    }
+    ._search input{
+        @include add_theme(intro_title,null,intro_title);
+    }
+    ._search input:focus{
+        @include add_theme(null,null,input_active_color);
+    }
+}

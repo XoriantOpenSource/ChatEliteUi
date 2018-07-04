@@ -1,0 +1,66 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo _logo" data-bind="click : showHomeScreen">
+            <img src="${require(`./../../../icons/logo.svg`)}" alt="" data-intro="ChatElite Support" data-position="bottom">
+        </a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a data-bind="click : startChatEliteGuide" href="#">ChatElite guide</a>
+            </li>
+            <li>
+                <a class="" data-bind="popOver :{trigger:'click' , placement:'bottom-left',padding:'false'  }" href="#">
+                    <span data-intro="Select the theme" data-position="bottom">Themes</span>
+                    <div template>
+                        <div class="row">
+                            <div class="col m4 _themeHolder">
+                                <img src="${require(`./../../../icons/dark_theme.svg`)}" title="dark" alt="" class="_theme">
+                            </div>
+                            <div class="col m4 _themeHolder">
+                                <img src="${require(`./../../../icons/light_theme.svg`)}" title="light" alt="" class="_theme">
+                            </div>
+                            <div class="col m4 _themeHolder">
+                                <img src="${require(`./../../../icons/default_theme.svg`)}" title="default" alt="" class="_theme">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <!-- ko if : userDetails().profile_img -->
+            <li class="_img">
+                <img data-bind="attr:{src:userDetails().profile_img , title : userDetails().user_name }" alt="" class="circle responsive-img"
+                />
+            </li>
+            <!-- /ko -->
+            <!-- ko ifnot : userDetails().profile_img -->
+            <li>
+                <i class="medium material-icons" style="font-size: 4rem;  cursor: default;" data-bind="attr: { title : userDetails().user_name }">account_circle</i>
+            </li>
+            <!-- /ko -->
+            <li>
+                <a class='dropdown-button ' href='#' data-activates='dropdown22' style="padding:0px">
+                    <i class="medium material-icons">more_vert</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <ul id='dropdown22' class='dropdown-content'>
+        <li>
+            <a id="pf" class="modal-trigger" href="#_modal4" data-bind="click: function() { $component.showProfile.bind($component, userDetails())();}">Profile</a>
+        </li>
+
+    </ul>
+</nav>
+
+<!-- Modal Structure -->
+<div id="_modal4" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <!-- ko if: showProfileComponent -->
+        <profile-component params="res:pfDetails()"></profile-component>
+        <!-- /ko -->
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+</div>

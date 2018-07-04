@@ -1,0 +1,74 @@
+nav {
+    background:#486A93 url("./../ts/app/components/init/icons/bg.png") repeat 0 -30%;
+    height: 60px;
+    line-height: 60px;
+    box-shadow: none; 
+    
+    ._logo {
+        margin-left: 2%;
+        margin-top: 3px;
+    }
+
+    .brand-logo{
+        position: relative;
+    }
+
+    ._img{
+        height: 0px;
+        padding: 10px;
+
+        img{
+            width: 42px;
+            height: 42px;
+        }
+    }
+
+    ul i{
+        height : 60px !important;
+    }
+    
+    ul a{
+        opacity: 0.81;
+        color: #FFFFFF;
+        font-family: "Open Sans";
+        font-size: 10px;
+    }
+
+    ._collapsible-header{
+            background-color: inherit !important;
+            border-bottom: none;
+            height:60px;
+            padding-top: 23px;
+        }
+}
+
+._feedback-text{
+    font-family: 'Open Sans';
+}
+
+._theme{
+      cursor: pointer;
+} 
+._themeHolder{
+    padding:12px 5px !important;
+}
+
+nav{
+    @include add_theme(null,nav_header);
+}
+
+#_modal4{
+    width:59%;
+    height:70%;
+}
+
+._collapsible-body{
+     @include add_theme(color,background_color,card_background_color);
+ }
+
+ .default ._collapsible-body{
+        background-color: white;
+        color: black;
+ }
+
+

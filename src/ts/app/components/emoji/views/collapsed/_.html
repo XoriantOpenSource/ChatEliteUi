@@ -1,0 +1,9 @@
+<div id="emojiList">
+    <span data-bind="foreach : emojiFaces">
+    <span style="cursor : pointer;" data-bind="click: $parents[1].changeEmoji"><li data-bind="text: name, messageText"></li></span>
+    </span>
+    <hr>
+    <span data-bind="foreach : emojiHands">
+    <span style="cursor : pointer;" data-bind="click: $parents[1].changeEmoji"><li data-bind="text: name, messageText"></li></span>
+    </span>
+</div>

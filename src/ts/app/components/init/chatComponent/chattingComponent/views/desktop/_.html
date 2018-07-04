@@ -1,0 +1,423 @@
+<div class="_chattingComponent">
+    <div class="row">
+        <div class="col m11 offset-m1">
+            <div class="row">
+                <div class="col m5 _prevDate"></div>
+                <div class="col m2 _date"></div>
+                <div class="col m2"></div>
+                <div data-intro="Hover to see the chat features" data-position="left" class="col m3 _chatIcons">
+                    <!-- Transfer chat -->
+                    <!--ko if:$component.p2p_status -->
+                    <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto-bottom', width: '250px',padding:'false', title:'Transfer chat'}">
+                        <div class="_transfer-chat" title="Transfer Chat" data-bind="grade : { feature : 'transferChat' }"></div>
+                        <div template>
+                            <div class="row _search">
+                                <div class="col m9 offset-m1">
+                                    <select data-bind="selectize: $component.allUsersArray, optionsCaption: 'Search for users', optionsValue : '_id', optionsText : 'user_name' , selectedOptions: $component.TransferUsers , options: {plugins: ['remove_button'], maxOptions : 3,sortField:{field:'user_name',direction:'asc'}}"></select>
+                                </div>
+                                <div class="col m1">
+                                    <i class="material-icons">search</i>
+                                </div>
+                            </div>
+                            <p></p>
+                            <div class="row">
+                                <div class="col m10 offset-m1 _warningText">
+                                    * by transfering chat, this group will be deleted from your account.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col m4 offset-m1">
+                                    <button class="waves-effect waves-light btn light-blue _transferButton" data-bind="click : transferChat">Transfer</button>
+                                </div>
+                                <div class="col m4 offset-m2">
+                                    <button class="waves-effect waves-light btn grey _cancelButton" onclick="$('._transfer-chat').click();">Cancel</button>
+                                </div>
+                            </div>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <div class="_download-chat" title="Download chat" data-bind="grade : { feature : 'downloadChat'}, click : downloadChats"></div>
+                    <!--ko ifnot:$component.p2p_status -->
+                    <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto-bottom', width: '250px',padding:'false', title:'Leave group'}">
+                        <div class="_leave-group" title="Leave Group" data-bind="grade : { feature : 'leaveGroup' }"></div>
+                        <div template>
+                            <p></p>
+                            <div class="row">
+                                <div class="col m10 offset-m1 _warningText">
+                                    * by leaving chat, this group will be deleted from your account and you won't be able send message in this group.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col m4 offset-m1">
+                                    <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click : leaveGroup">Yes</button>
+                                </div>
+                                <div class="col m4 offset-m2">
+                                    <button class="waves-effect waves-light btn grey _cancelButton" onclick="$('._leave-group').click();">Cancel</button>
+                                </div>
+                            </div>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <div class="_collapse" data-bind="click:collapsed_widget" title="Collapse"></div>
+                    <div class="_search_chats" title="search chat" data-bind="click:searchingChats">
+                        <i class="material-icons">search</i>
+                    </div>
+                </div>
+            </div>
+            <!-- ko if:searchChats() -->
+            <div class="_searching_chats">
+                <div class="row _search_box col m9">
+                    <div class="_search_chat_block">
+                        <i class="col m1 material-icons _chat_search_icons _chat_search">search</i>
+                        <input autocomplete="off" type="text" class="col m10 _search_chat" id="_search-chat" name="search" placeholder="Search keyword"
+                            data-bind="value: $component.searchChatText,event:{keydown:doChatSearch}">
+                        <i class="col m1 material-icons _chat_search_icons" data-bind="click:clearSearchChatText">cancel</i>
+                    </div>
+                </div>
+                <!-- ko if: searchChats() && searchChatsFromHist().length === 0 -->
+                <div class=" col m2 _no_results">
+                    <p>No results found</p>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: searchChats() && searchChatText() && searchChatsFromHist().length -->
+                <div class="col m2 _results">
+                    <p>Found &nbsp;
+                        <span data-bind="text:searchChatsFromHist().length"></span>&nbsp;results</p>
+                </div>
+                <!-- /ko -->
+
+                <div class="col m1 _cancel_search" data-bind="click:cancelSearch">
+                    <u>Cancel</u>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="_chats" data-bind='scrollBar:$component.searchChatsFromHist()' id="_chat-history">
+                <!--ko if:showSpinnerForChatHistory() -->
+                <loader-component style="text-align: center;"></loader-component>
+                <!-- /ko -->
+                <div data-bind="foreach: searchChatsFromHist()">
+
+                    <!-- date-change -->
+                    <!-- ko ifnot:$data.local -->
+                    <div class="row _chat-row _Date-line" data-bind="ifnot:$component.showDate(created_date_time)">
+                        <div class="col m5 _Date-line">&nbsp;</div>
+                        <div class="col m2 _Date-duration center-align">
+                            <span data-bind="momentDate:created_date_time"></span>
+                        </div>
+                        <div class="col m5 _Date-line">&nbsp;</div>
+                    </div>
+                    <!-- /ko -->
+
+                    <!-- ko if: type == 'message' -->
+                    <div class="row _chat-row _call-line">
+                        <div class="col m12">
+                            <div class="row valign-wrapper">
+                                <!-- <div class="col m4 _line"></div> -->
+
+                                <div class="col m3 _call-duration center-align offset-m4" data-bind="html: text"></div>
+                                <div class="col m1 _call-text center-align">
+                                    <span class="_call-time" data-bind="moment:{date_time:created_date_time,observe:$component.chatArray()}"></span>
+                                </div>
+                                <!-- <div class="col m4 _line"></div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+
+                    <!-- ko ifnot: type == 'message' -->
+                    <!-- ko ifnot:created_by_user.user_id == $component.current_user.user_id-->
+                    <div>
+                        <div class="row _chat-row _leftChat" data-bind='chatScroll : {group_id : $component.conversation()._id , chat_id : _id , dateTime : created_date_time}'>
+                            <div class="col m11">
+                                <div class="row">
+                                    <div class="left">
+                                        <!-- ko ifnot: $data.isDropped -->
+                                        <span class="_user-name" data-bind="text: created_by_user.user_name"></span> &nbsp;
+
+                                        <div class="row valign-wrapper _valign-center">
+                                            <span data-bind="click : $component.replyToMessage">
+                                                <i class="colorGray cursorPointer tiny material-icons reply">reply</i>
+                                            </span>
+                                            <!-- ko ifnot: favorite.indexOf($component.current_user._id) > -1 -->
+                                            <img src="${require(`./../../../../icons/icon-favourite.svg`)}" alt="" title="Mark as a favorite" data-bind="click : $component.markfavorite">
+                                            <!-- /ko -->
+
+                                            <!-- ko if: favorite.indexOf($component.current_user._id) > -1 -->
+                                            <img src="${require(`./../../../../icons/icon-marked-favourite.svg`)}" alt="" title="Remove from favorite" data-bind="click : $component.unmarkfavorite">
+                                            <!-- /ko -->
+                                            <span class="_chat-time" data-bind="moment:{date_time:created_date_time,observe:$component.chatArray()}"></span>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                                <div class="row" data-bind="css: { 'selectedReplyMessage': $component.selectedReplyMessageID() == _id }">
+
+                                    <div class="_talk-bubble _top-corner">
+                                        <div class="_talktext">
+                                            <!-- ko if: $data.isDropped -->
+                                            <div class="_deletedMessage">
+                                                <img src="${require(`./../../../../icons/icon-delete.svg`)}" /> This message has been removed.
+                                            </div>
+                                            <!-- /ko -->
+
+                                            <!-- ko ifnot: $data.isDropped -->
+                                            <!-- ko if: $data.replyOf && $data.replyOf.chat_id-->
+                                            <div class="replyMessage" data-bind="click:$component.goToRepliedMessage">
+                                                <p data-bind="text: replyOf.chat_name"></p>
+                                                <p class="" data-bind="text: replyOf.message,messageText"></p>
+                                            </div>
+                                            <!--  /ko -->
+                                            <!-- ko if: type == 'doc' -->
+
+                                            <div class="card horizontal">
+
+                                                <div class="card-image">
+                                                    <!--ko if: $component.isValidImage.bind($component, $data)() -->
+                                                    <img data-bind="attr : {src : $component.previewUrl.bind($component, $data)() }" />
+                                                    <!-- /ko -->
+                                                    <!--ko ifnot: $component.isValidImage.bind($component, $data)() -->
+                                                    <i class="_previewImg material-icons">content_copy</i>
+                                                    <!-- /ko -->
+                                                </div>
+                                                <div class="card-stacked">
+
+                                                    <div class="card-content">
+                                                        <p data-bind="text:text , messageText"></p>
+                                                    </div>
+                                                    <div class="card-action">
+                                                        <a data-bind="attr : {title : text}, click : $component.download_doc">
+                                                            <i class="circle blue-grey lighten-5 material-icons">file_download</i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                            <!-- </div> -->
+                                            <!-- /ko -->
+
+                                            <!-- ko ifnot: type == 'doc' -->
+                                            <p data-bind="text:text , messageText"></p>
+                                            <!-- /ko -->
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if:created_by_user.user_id == $component.current_user.user_id-->
+
+                    <div>
+                        <div class="row _chat-row _rightChat" data-bind="chatScroll : {group_id : $component.conversation()._id , chat_id : _id , dateTime : created_date_time}">
+                            <div class="col m11 offset-m1">
+
+                                <div class="row">
+                                    <div class="right">
+                                        <!-- ko ifnot: $data.isDropped -->
+                                        <span class="_user-name">Me &nbsp;</span>
+                                        <div class="row valign-wrapper _valign-center">
+                                            <!-- ko ifnot:$data.local -->
+                                            <div class="_readBy-icon" data-bind="event: { mouseover: $component.readMessages.bind($data , {group_id : $component.conversation()._id , chat_id : _id}) } , popOver :{trigger:'hover' , placement:'auto' , width: 200, title: 'Message read by' }">
+                                                <img src="${require(`./../../../../icons/icon-read-by.svg`)}" alt="" title="Read by..">
+                                                <div template data-bind='scrollBar'>
+                                                    <div style="font-size: x-small" data-bind="foreach : $component.readMessageUserList" class="_popOver">
+                                                        <span data-bind="text:user_name"></span>
+                                                        <span>@</span>
+                                                        <span data-bind="moment:{date_time:read_date}"></span>
+                                                        <hr>
+                                                    </div>
+                                                    <div style="font-size: x-small ; text-align : center" data-bind="if: $component.readMessageUserList().length == '0'">
+                                                        No user has read this message yet!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- reply to message -->
+                                            <span data-bind="click : $component.replyToMessage">
+                                                <i class="colorGray cursorPointer tiny material-icons reply">reply</i>
+                                            </span>
+                                            <!-- ko ifnot: favorite.indexOf($component.current_user._id) > -1 -->
+                                            <img src="${require(`./../../../../icons/icon-favourite.svg`)}" alt="" title="Mark as a favorite" data-bind="click : $component.markfavorite">
+                                            <!-- /ko -->
+
+                                            <!-- ko if: favorite.indexOf($component.current_user._id) > -1 -->
+                                            <img src="${require(`./../../../../icons/icon-marked-favourite.svg`)}" alt="" title="Remove from favorite" data-bind="click : $component.unmarkfavorite">
+                                            <!-- /ko -->
+                                            <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto', width: '250px',padding:'false', title:'Delete Message'}">
+                                                <img src="${require(`./../../../../icons/icon-delete.svg`)}" alt="" title="Delete Message">
+                                                <div template>
+                                                    <p></p>
+                                                    <div class="row">
+                                                        <div class="col m10 offset-m1 _warningText">
+                                                            * This message will be permanently deleted.Are you sure you want to delete it ?
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col m4 offset-m1">
+                                                            <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click : $component.deleteMessage">Yes</button>
+                                                        </div>
+                                                        <div class="col m4 offset-m2">
+                                                            <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click: $component.closePopover">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <span class="_chat-time" data-bind="moment:{date_time:created_date_time,observe:$component.chatArray()}"></span>
+                                            <!-- /ko -->
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                                <div class="row" data-bind="css: { 'selectedReplyMessage': $component.selectedReplyMessageID() == _id }">
+                                    <div class="_talk-bubble _top-corner right">
+                                        <div class="_talktext">
+
+                                            <!-- ko if: $data.isDropped -->
+                                            <div class="_deletedMessage">
+                                                <img src="${require(`./../../../../icons/icon-delete.svg`)}" /> This message has been removed.
+                                            </div>
+                                            <!-- /ko -->
+
+                                            <!-- ko ifnot: $data.isDropped -->
+                                            <!-- ko if: $data.replyOf -->
+                                            <!-- ko if: $data.replyOf.chat_id -->
+                                            <div class="replyMessage" data-bind="click:$component.goToRepliedMessage">
+                                                <p data-bind="text: replyOf.chat_name"></p>
+                                                <p class="" data-bind="text: replyOf.message,messageText"></p>
+                                            </div>
+                                            <!-- /ko -->
+                                            <!--  /ko -->
+                                            <!-- ko if: type == 'doc' -->
+                                            <div class="card horizontal">
+
+                                                <div class="card-image">
+
+                                                    <!--ko if: $component.isValidImage.bind($component, $data)() -->
+                                                    <img data-bind="attr : {src : $component.previewUrl.bind($component, $data)() }" />
+                                                    <!-- /ko -->
+                                                    <!--ko ifnot: $component.isValidImage.bind($component, $data)() -->
+                                                    <i class="_previewImg material-icons">content_copy</i>
+                                                    <!-- /ko -->
+                                                </div>
+                                                <div class="card-stacked">
+
+                                                    <div class="card-content">
+                                                        <p data-bind="text:text , messageText"></p>
+                                                    </div>
+                                                    <div class="card-action">
+                                                        <a data-bind="attr : {title : text}, click : $component.download_doc">
+                                                            <i class="circle blue-grey lighten-5 material-icons">file_download</i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                            <!-- </div> -->
+                                            <!-- /ko -->
+
+                                            <!-- ko ifnot: type == 'doc' -->
+
+                                            <p data-bind="text:text , messageText"></p>
+
+                                            <!-- /ko -->
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="row" style="height: 20px;">
+                <div data-bind="if : userTyping">
+                    <div class='_typing_user'>
+                        <!-- ko text:typingUser -->
+                        <!-- /ko -->&nbsp;is typing…
+                    </div>
+                </div>
+            </div>
+            <!-- ko if: $component.progress() !=0 && $component.progress() !='100%'  -->
+            <div class="row">
+                <div class="progress">
+                    <div class="determinate" data-bind="style : { width : $component.progress()}"></div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: $component.showReplyBox() == true  -->
+            <div class="row" id="replyMessageBox">
+                <div class="col m11">
+                    <div data-bind="text:replyOf().chat_name"></div>
+                    <span data-bind="text:replyOf().message"></span>
+                </div>
+                <div class="col m1">
+                    <span class="push">
+                        <a class="" data-bind="click:$component.closeReplyBox">X</a>
+                    </span>
+                </div>
+            </div>
+            <!-- /ko -->
+            <div class="row _chat-textarea">
+
+                <div class="col m10">
+
+                    <textarea data-intro="Type here to send the Message" data-position="top" name="" cols="" rows="" placeholder="Type a message here..."
+                        id='chatText' autofocus data-bind="textInput : chatText, event: {keydown:
+						$component.onEnter} , scrollBar,attr:{disabled:chatDisabled} " maxlength="3000"></textarea>
+                </div>
+                <div class="col m2 _rem-textarea">
+                    <div class="row">
+                        <div class="col m4 offset-m4">
+                            <div data-bind="grade : { feature : 'document'} , popOver :{trigger:'click' , placement:'top-left', width: '300px',padding:'true', title: 'Document sharing'}">
+                                <img src="${require(`./../../../../icons/icon-attachment.svg`)}" alt="" class="resposive-img _smiley" />
+                                <div template data-bind="scrollBar">
+                                    <form data-bind="submit : $component.upload_doc">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file" id="myFileField">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" id="myFileField1" type="text" placeholder="Choose file...">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col m4 offset-m1">
+                                                <button type="submit" class="waves-effect waves-light btn light-blue _yesButton">Send</button>
+                                            </div>
+                                            <div class="col m4 offset-m2">
+                                                <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click: $component.closePopover">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m4">
+                            <div data-bind="popOver :{trigger:'click' , placement:'top-left', width: '175px',padding:'false', autoHide : 10000}">
+                                <img src="${require(`./../../../../icons/icon-smiley.svg`)}" alt="" class="resposive-img circle _smiley" />
+                                <div template data-bind="scrollBar">
+                                    <emoji-component></emoji-component>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

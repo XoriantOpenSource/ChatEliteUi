@@ -1,0 +1,16 @@
+<!-- ko ifnot: showTransferComponent -->
+<div id="__chattingComponent" class="col m12">
+    <!-- ko ifnot: showChatComponent() -->
+    <loader-component></loader-component>
+    <!-- /ko -->
+    <!-- ko if: showChatComponent() -->
+    <chatting-component params='group_id: group_id()'></chatting-component>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+
+<!-- ko if: showTransferComponent -->
+<div id="__transferComponent" class="__transferComponent_c">
+    <transfer-component params="res : transferChatData()"></transfer-component>
+</div>
+<!-- /ko -->

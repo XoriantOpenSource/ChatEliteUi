@@ -1,0 +1,8 @@
+<div data-bind="switch: _env">
+    <div data-bind="case: 'desktop'" class='dark'>
+        ${require('./views/desktop/_.html')}
+    </div>
+    <div data-bind="case: 'collapsed'" class='dark'>
+        ${require('./views/collapsed/_.html')}
+    </div>
+</div>

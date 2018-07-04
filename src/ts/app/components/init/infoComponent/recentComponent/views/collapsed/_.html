@@ -1,0 +1,196 @@
+<div class="row _search">
+    <!-- ko if : $component.historyArray().length == 0 -->
+    <div class="row">
+        <div class="row _no-user-text">
+            <div class="row">
+                <div class="col m12 ">
+                    Don’t have any
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    <strong>Conversations yet!</strong>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <!-- /ko -->
+    <div class="col m11">
+        <!-- <div class="chips-autocomplete"></div> -->
+        <input data-intro="Search your conversation here" data-position="left" id="_conversationSearch" placeholder="Search here..."
+            data-bind="value: $component.Query, valueUpdate: 'keyup'" />
+    </div>
+    <div class="col m1">
+        <!-- ko if: $component.Query() == '' -->
+        <i class="material-icons" data-bind="click : focusOnSearch">search</i>
+        <!-- /ko -->
+
+        <!-- ko ifnot: $component.Query() == '' -->
+        <i class="material-icons" data-bind="click : changeIcon">close</i>
+        <!-- /ko -->
+    </div>
+</div>
+
+<!-- ko if: showLoader() -->
+<loader-component style="text-align: center;"></loader-component>
+<!-- /ko -->
+
+<!-- for loop -->
+<div class="_recentChats-component _recentChats-component_c" data-bind="scrollBar:$component.searchResults()">
+    <div class="_recent_users_list" data-bind="foreach: searchResults(),chardin:{'data_intro':'Click on the user list to view recent messages','data_position':'left',data:$component.historyArray().length}">
+        <div class="row _user" data-bind="css : { _userActive: $index() == $component.selectedIndex() }">
+            <!-- ko if: isP2PChat -->
+            <div class="col m2 _status" data-bind="css : $component.otherUsersOnlineStatus($data),click: function() { $component.showProfile.bind($component,
+                   $data)(); } ">
+
+                <!-- ko if: $component.otherUserProfileImage($data) -->
+                <a class="modal-trigger _im1" href="#_modal4">
+                    <img data-bind="attr:{ src: $component.otherUserProfileImage($data) }" class="circle responsive-img" alt="">
+                </a>
+                <!-- /ko -->
+
+                <!-- ko ifnot: $component.otherUserProfileImage($data) -->
+                <a class="_im1 modal-trigger" href="#_modal4">
+                    <img src="${require(`./../../../../icons/icon-users-active-40-40.svg`)}" alt="" title='View Profile' class="circle responsive-img">
+                </a>
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+
+            <!-- ko ifnot: isP2PChat -->
+            <div class="col m2 _group">
+                <img src="${require(`./../../../../icons/icon-groups-active-40-40.svg`)}" alt="" class="circle responsive-img">
+                <div class="_usersCount" data-bind="popOver :{trigger:'hover' , placement:'auto' , width: 250, title: subject , autoHide : 10000}, clickBubble: false">
+                    <span data-bind="text : users().length"></span>
+                    <div template data-bind='scrollBar'>
+                        <div class='_group_members_count'>
+                            Last active
+                            <span data-bind="moment:{ date_time: last_access_date, observe:$component.historyArray()}"></span>
+                            <br>
+                            <span data-bind="text : users().length"></span> people in group
+                            <br>
+                            <span data-bind="text : $component.totalOnlineUsers(users())"></span> people are online
+                        </div>
+                        <div data-bind="foreach : users()" class="_popOver">
+                            <div class="row">
+                                <div class="col m10">
+                                    <span class="_group_member_user_name truncate" data-bind="text : user_name, attr: { title : user_name}"></span>
+                                </div>
+                                <div class="col m1"></div>
+                                <div class="col m1">
+                                    <span data-bind="switch: online_status">
+                                        <span data-bind="case: 1">
+                                            <span class="onlineBadge onlineBadgeColor"></span>
+                                        </span>
+                                        <span data-bind="case: 2">
+                                            <span class="onlineBadge awayBadgeColor"></span>
+                                        </span>
+                                        <span data-bind="case: 3">
+                                            <span class="onlineBadge"></span>
+                                        </span>
+                                    </span>
+                                </div>
+                                </br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="col m7" data-bind="click: function() { $component.startChat.bind($component, $data)(); $component.onIndexSelected.bind($component, $index())() }">
+                <div class="_chatInfo">
+                    <p class="truncate" data-bind="text : subject, attr: { title : subject}"></p>
+                    <p class="truncate" data-bind="text : lastMessage, attr: { title : lastMessage}"></p>
+                    <p>
+                        <span data-bind="momentDate:last_access_date"></span>,
+                        <span data-bind="moment:{date_time:last_access_date,observe:$component.historyArray()}"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col m1">
+                <!-- ko if: unread_messages_count > 0 -->
+                <div class="_position-relative">
+                    <img src="${require(`./../../../../icons/icon-unread-messages.svg`)}" alt="" class="responsive-img _badges">
+                    <div class="_unreadMessages" data-bind="text: unread_messages_count" title="Unread Messages"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+
+            <div class="col m1" data-bind="clickBubble: false">
+                <!-- ko if: isP2PChat -->
+                <div class="fixed-action-btn horizontal">
+                    <a href="#">
+                        <i class="material-icons _menuIcon">more_vert</i>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto', width: '250px',padding:'false', title:'Delete Conversation'}">
+                                <img src="${require(`./../../../../icons/icon-delete-red.svg`)}" alt="" class="responsive-img _slidInIcons" title="Remove Conversation"
+                                />
+                                <div template>
+                                    <p></p>
+                                    <div class="row">
+                                        <div class="col m10 offset-m1 _warningText">
+                                            * This conversation will be permanently deleted.Are you sure you want to delete it?.
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col m4 offset-m1">
+                                            <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click:$component.removeUserRecent,clickBubble:false">Yes</button>
+                                        </div>
+                                        <div class="col m4 offset-m2">
+                                            <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click:$component.closePopover">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /ko -->
+                <!-- ko if:  created_by_user._id == $component.current_user_obj()._id && isP2PChat == false-->
+                <div class="fixed-action-btn horizontal">
+                    <a href="#">
+                        <i class="material-icons _menuIcon">more_vert</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto', width: '250px',padding:'false', title:'Delete Conversation'}">
+                                <img src="${require(`./../../../../icons/icon-delete-red.svg`)}" alt="" class="responsive-img _slidInIcons" title="Remove Conversation"
+                                />
+                                <div template>
+                                    <p></p>
+                                    <div class="row">
+                                        <div class="col m10 offset-m1 _warningText">
+                                            * This conversation will be permanently deleted.Are you sure you want to delete it?.
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col m4 offset-m1">
+                                            <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click:$component.removeUserRecent,clickBubble:false">Yes</button>
+                                        </div>
+                                        <div class="col m4 offset-m2">
+                                            <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click:$component.closePopover">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>
