@@ -7,9 +7,9 @@
   },
   "description": "Chatting application by Xoriant Solutions Pvt Ltd.",
   "scripts": {
-    "start": "rimraf debug && npm outdated && webpack --watch",
+    "start": "rimraf debug && webpack --watch",
     "test": "karma start",
-    "http": "rimraf debug && npm outdated && webpack --watch",
+    "http": "rimraf debug && webpack --watch",
     "release": "rimraf dist && webpack --bail --progress --profile",
     "build": "build --win",
     "makeDoc": "typedoc --out ./docs ./src --exclude **/*.d.ts --ignoreCompilerErrors --hideGenerator --name 'WEB-UI'",
