@@ -1,0 +1,18 @@
+._transferChat_c{
+    padding-top: 10px;
+    width:350px;
+    border:1px solid #455A64;
+    border-radius: 20px;
+    ._transferChat-Content_c{
+             margin-top : 0;
+             ._make_strong_c{
+                font-weight: 600;
+             }
+             ._transfer_close_c{
+                 cursor: pointer;
+             }
+             ._transfer_separator_c{
+                 border-top:1px solid #455A64;
+             }
+    }
+}

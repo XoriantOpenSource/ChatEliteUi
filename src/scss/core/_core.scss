@@ -1,0 +1,62 @@
+.row{
+    margin-bottom: 0px;
+}
+
+.row .col{
+	padding:0px;
+}
+
+.tabs .indicator{
+    height : 0px;  
+}
+
+.webui-popover-title{
+    background-color: #53718A;
+    color: white;
+}
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 5%;
+    left: 5%;
+}
+
+::-webkit-scrollbar
+{
+  width: 4px;  /* for vertical scrollbars */
+  height: 4px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #C8C8C8;
+}
+
+#_infoOverlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 21%; /* Full width (cover the whole page) */
+    height: 91%; /* Full height (cover the whole page) */
+    right: 0;
+    bottom: 0;
+    background-color: transparent; /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: wait; /* Add a pointer on hover */
+}
+
+
+hr {
+    color:#C8C8C8; /*used for IE, top color*/
+    background:#C8C8C8; /*firefox and chrome, top color*/
+    min-height: 0px;  /*required to get IE to render the top pixel color*/
+    border-left: 0px; 
+    border-right: 0px; 
+    border-top: 1px solid #C8C8C8; /*Your top color*/
+    border-bottom: 1px solid #ffffff; /*Your bottom color*/
+}

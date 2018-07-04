@@ -1,0 +1,21 @@
+<div class="_transferChat">
+    <div class="row _transferChat-Content">
+        <div class="col m12">
+            <div class="row _iconRow">
+                <img src="${require(`./../../../../icons/icon-groups-active-40-40.svg`)}" alt="" class="responsive-img">
+                <div><i class="small material-icons _arrow">keyboard_backspace</i></div>
+                <div><i class="medium material-icons _checkCircle">check</i></div>
+                <div><i class="small material-icons _arrow">keyboard_backspace</i></div>
+                <img src="${require(`./../../../../icons/icon-users-active-40-40.svg`)}" alt="" class="responsive-img">
+            </div>
+
+            <div class="row">
+                <div class="col m12 _transfer-subject" data-bind="text : res().subject"></div>
+            </div>
+
+            <div class="row">
+                <div class="col m12 _finalLine">Transfered to <strong><span data-bind="text : res().users"></span></strong> successfully</div>
+            </div>
+        </div>
+    </div>
+</div>

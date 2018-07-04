@@ -1,0 +1,114 @@
+<div class="_profile">
+    <div class="row _profileContent">
+        <div class="col m12 _holder" id="_ownInfo">
+            <div class="row _userData">
+                <div class=" col m1">
+                </div>
+                <div class=" col m3 _pimg">
+                    <div class="row">
+                        <!-- ko if: res().profile_img === "NA" -->
+                        <img src="${require(`./../../../../icons/icon-users-active.svg`)} " alt=" " class="circle ">
+                        <!-- /ko -->
+                        <!-- ko ifnot: res().profile_img === "NA" -->
+                        <img data-bind="attr:{ src: res().profile_img }" alt=" " class="circle">
+                        <!-- /ko -->
+                    </div>
+
+                </div>
+                <div class="col m6">
+                    <div class="row _name">
+                        <div class="_username truncate" data-bind="text:res().user_name,attr:{title:res().user_name}"></div>
+                        <div class="_designation truncate" data-bind="text:res().designation,attr:{title:res().designation}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row _otherData ">
+
+                <!-- ko if:  res().user_id != current_user.user_id -->
+                <div class="col m12 _iconsP">
+                    <div class=" col m1">
+                    </div>
+                    <div class=" col m11 ">
+                        <div class="row ">
+                            <div class="col m2">
+                                <img src="${require(`./../../../../icons/chat_icon.png`)}" alt="" title="Go to Conversation" data-bind="click:$component.showP2PChat"
+                                    class="responsive-img " />
+                            </div>
+                            <div class="col m1"></div>
+                            <div class="col m2 ">
+                                <a data-bind="attr:{href: 'mailto:'+res().email_id} ">
+                                    <img src="${require(`./../../../../icons/mail_icon.png`)} " alt=" " title="Send mail" class="responsive-img " />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <div class="col m12 _mail ">
+                    <div class=" col m1 ">
+                    </div>
+                    <div class=" col m11 ">
+                        <div class="row ">
+                            <div class=" col m2 " id="__key">
+                                <div class="row ">
+                                    <div class="_key " title="Email ID ">Email ID:</div>
+                                </div>
+                            </div>
+                            <div class=" col m9 ">
+                                <div class="row ">
+                                    <div class="_val truncate " title=" " data-bind="text:res().email_id,attr:{title:res().email_id} "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col m12 __mail ">
+                    <div class=" col m1 ">
+                    </div>
+                    <div class=" col m11 ">
+                        <div class="row ">
+                            <div class=" col m2 " id="__key1">
+                                <div class=" row ">
+                                    <div class="_key truncate " title="Contact ">Contact:</div>
+                                </div>
+                            </div>
+                            <div class=" col m9 ">
+                                <div class="row ">
+                                    <div class="_val truncate " title=" " data-bind="text:res().mobile,attr:{title:res().mobile} "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ko if: res().user_id != current_user.user_id -->
+        <div class="col m6 _groups ">
+            <div class="row _commonGrp ">
+                <div class=" col m1 "> </div>
+                <div class="col m9 _box ">
+                    <div class="_grpheading ">Common Groups</div>
+                    <div class="_headerseparator ">
+                        <hr> </div>
+                    <div>
+                        <!-- ko if: commonGroupsArray().length === 0-->
+                        <div class="_grp-Name ">No groups in common!</div>
+                        <!-- /ko -->
+                        <!-- for loop -->
+                        <div data-bind="foreach: commonGroupsArray " class="_commonGroupscontent ">
+                            <div class="_grp_Name truncate " data-bind="text : subject , attr: { title : subject} "></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+
+</div>

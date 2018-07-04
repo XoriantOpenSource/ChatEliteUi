@@ -1,0 +1,64 @@
+._profile{
+
+    ._profileContent{
+      ._holder{
+        ._userData{
+            margin-top:55px;
+             max-height:95px;
+            ._pimg
+            {
+                border-radius:50%;
+                border:2px solid #cccccc;
+                height:98px;
+                width:98px;
+                img { width:95px; height:95px;border:#cccccc;}
+            }
+            ._name
+            {   padding-left: 30px;
+                ._username{font-family: "Open Sans-Semibold";font-size: 26pt;color:#53718a;}
+            } 
+        }
+    ._otherData{
+
+        ._iconsP{
+          margin-top:30px;
+          img{margin-left:15px;cursor:pointer;}
+       
+         }
+         ._mail{
+              margin-top:50px;
+             ._key{font-family: "Open Sans-Semibold";font-size: 16pt;color:#858585;}
+              ._val{font-family: "Open Sans-Semibold";font-size: 16pt;color:#333333;padding-left:8px;}
+         }
+         .__mail{
+             margin-top:30px;
+             ._key{font-family: "Open Sans-Semibold";font-size: 16pt;color:#858585;}
+              ._val{font-family: "Open Sans-Semibold";font-size: 16pt;color:#333333;padding-left:8px;}
+         }
+    } 
+    }
+    ._groups{
+        margin-top:58px;
+        ._commonGrp{
+            ._box{border:1px solid #53718a; 
+            ._headerseparator{margin-left:6px;margin-right:6px;}
+            ._grpheading{font-family: "Open Sans-Semibold";font-size: 19pt;color:#53718a;padding-left:10px;padding-top:5px;}
+            ._commonGroupscontent
+                { 
+                    margin-left:15px;
+                    max-height: 265px;
+                    height: 265px;
+                    overflow-y: auto;
+                    ._grp_Name{font-family: "Open Sans-Semibold";font-size: 15pt;color:#53718a;}
+                }
+                ._grp-Name{margin-left:13px;}
+            }  
+        }
+    }
+    }
+
+
+}
+
+
+    

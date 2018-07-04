@@ -1,0 +1,242 @@
+//  __badge_base{
+//     float: right;
+//     height: 17px;
+//     width: 17px;
+//     text-align: center;
+//     border-radius: 12px;
+//     margin-top: 7px;
+//     margin-left: 5px;
+//     font-family: $font-default-family;
+// }
+div[template] {
+    display: none;
+}
+
+// __scroll_base{
+//        width: 0.3em
+// }
+// __scroll_track_base{
+//     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// }
+// __scroll_thumb_base{
+//       background-color: darkgrey;
+//   outline: 1px solid slategrey;
+// }
+// __header_base{
+//     padding: 1%;
+//     font-size: 14px;
+//     font-weight: 100;
+//     background: $bg-component-color;
+//     font-family: $font-default-family;
+//     float:none;
+//     color: $text-component-color;
+//     height: 30px;
+// }
+// __header_textAlignment_base{
+//     padding: 5px 10px;
+// }
+// __innerScrollable_padding{
+//     padding: 2px 0px;
+// }
+// __userProfile_base{
+//     vertical-align: middle;
+//     padding: 2px;
+//     line-height: 1.5rem;
+//     font-size: 20px;
+// }
+textarea::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #455A64;
+}
+
+textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #455A64;
+    opacity: 1;
+}
+
+textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #455A64;
+    opacity: 1;
+}
+
+textarea:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #455A64;
+}
+
+textarea::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #455A64;
+}
+
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-moz-placeholder {
+    color: transparent;
+}
+
+
+/* FF 4-18 */
+
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+
+/* FF 19+ */
+
+textarea:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+
+/* IE 10+ */
+
+textarea:focus {
+    outline: none !important;
+}
+
+__search_base {
+    position: relative;
+    margin-top: 10px;
+    .chips-autocomplete {
+        margin: 0px;
+        min-height: 0px;
+    }
+    input {
+        margin-bottom: 0px;
+        border-bottom: 0px;
+        height: 25px;
+        margin-left: 2%;
+        margin-bottom: 5px;
+        border-bottom: 1px solid black;
+    }
+    i {
+        color: #15B65A;
+        cursor: pointer;
+    }
+    .chip i {
+        color: inherit;
+    }
+}
+
+__user_base {
+    margin: 8px 0px;
+    padding-left: 2%;
+    p {
+        margin: 0px;
+        line-height: 1rem;
+    }
+    p:nth-child(1) {
+        color: #455A64;
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 19px;
+    }
+    p:nth-child(2) {
+        color: #918B8B;
+        font-family: "Open Sans";
+        font-size: 10px;
+        font-style: italic;
+        line-height: 14px;
+    }
+    p:nth-child(3) {
+        color: #BDBCBC;
+        font-family: "Open Sans";
+        font-size: 9px;
+        font-style: italic;
+        line-height: 13px;
+    }
+    ._status img {
+        height: 46px;
+        width: 46px;
+        background-color: white
+    }
+    ._online img {
+        border: 3px solid #15B65A;
+    }
+    ._offline img {
+        border: 3px solid #D0CFCB;
+        -webkit-filter: grayscale(100%);
+        /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+    ._away img {
+        border: 3px solid #F1C534;
+    }
+    ._group img {
+        border: 3px solid #485D67;
+        background-color: white
+    }
+    ._group {
+        position: relative;
+    }
+    ._chatInfo {
+        margin-left: 7px;
+        cursor: pointer;
+    }
+    ._badges {
+        margin-top: 12px;
+    }
+    i._menuIcon {
+        margin-top: 8px;
+        cursor: default;
+    }
+    .fixed-action-btn {
+        position: absolute;
+        right: 0;
+        bottom: auto;
+        z-index: 1;
+    }
+    .fixed-action-btn.horizontal ul {
+        background-color: white;
+        right: 25px;
+        top: 70%;
+        width: 165px;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        height: 46px;
+        border-left: 4px solid #455A64;
+        li {
+            margin: 0px;
+        }
+    }
+    .fixed-action-btn ._slidInIcons {
+        margin: 8px 8px 0 2px;
+        cursor: pointer;
+    }
+}
+
+.colorWhite {
+    color: white;
+}
+
+.colorGray {
+    color: #aaa;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.displayHidden {
+    display: none !important;
+}
+
+.displayBlock {
+    display: block !important;
+}
+
+.visibilityHidden {
+    visibility: hidden !important;
+}
+
+.visibilityVisible {
+    visibility: visible !important;
+}

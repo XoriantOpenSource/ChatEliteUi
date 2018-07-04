@@ -1,0 +1,21 @@
+## Please make sure your PR fulfils the following requirements :
+
+* Methods contain inline comments for the documentation.
+* The commit message follows our guidelines
+* The test cases have been added for the changes that have been made.
+
+## Type of PR
+
+Please mention whether it is a fix for a bug,an enhancement or a feature request,refactoring,formatting,documentation updates or any other.
+
+## Changes Made
+
+Please describe what changes have been made in your request and how would it affect the application.Is it a breaking change?
+
+## Issue number 
+
+If applicable.
+
+## Additional information
+
+Add any other information about the PR here.

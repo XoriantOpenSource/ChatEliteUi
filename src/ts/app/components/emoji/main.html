@@ -1,0 +1,10 @@
+<div>
+    <div data-bind="switch: _env">
+        <div data-bind="case: 'desktop'">
+            ${require('./views/desktop/_.html')}
+        </div>
+        <div data-bind="case :'collapsed'">
+            ${require('./views/collapsed/_.html')}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+$font-default-family: sans-serif;
+$font-default: sans-serif;
+$default-font-weight: normal;
+$default-font-percentage: 62.5%;
+$large-font-size:1.2rem;
+$header-font-size:1.0rem;
+$default-font-size: 0.8rem;
+$small-font-size:0.5rem;
+$default-font-line-height: 1.1rem;
+$default-text-transform: none;
+$primary-text-color:#202020;
+$secondary-text-color:#202020;
+$ternary-text-color:#202020;
+$main-background-color:white;
+$hr-color:black;
+@mixin add_theme($color, $background_color, $border_color:null) {
+    @each $theme,
+    $map in $themes {
+        .#{$theme} & {
+            color: map-get($map, $color);
+            background-color: map-get($map, $background_color);
+            border-color: map-get($map, $border_color);
+        }
+    }
+}
+
+$rightChat-default :#DFE7F0;
+$themes: ( dark: (color:white, intro_title:white, intro_status:#C8CED5, card_background_color:#394263, background_color: #20243F, leftChat :#C6E8FC, leftChatText:#14608D, rightChatText:#708088, rightChat :#DFE7F0, header_date:#C7EAEA, nav_header:#11A8AB, active_back_color:#747B92, info_name:white, info_status:#DEDEDE, link_color:#039be5, chat_username:#7B8B94, call_line: #979797, input_active_color:teal), light: (color:black, intro_title:#5E5C5C, intro_status:#ADA8A8, card_background_color:#DBEBF8, background_color:white, leftChat:#C6E8FC, leftChatText:#025282, rightChatText:#455A64, rightChat:#DFE7F0, header_date:white, nav_header:#005181, active_back_color:white, info_name:#455A64, info_status:#918B8B, link_color:#039be5, chat_username:#7B8B94, call_line: #979797, input_active_color:teal) // green:(color:white,intro_title:#5E5C5C,intro_status:#ADA8A8,card_background_color:white,background_color:white,leftChat:#72BD9C,leftChatText:#EAF1EE,rightChatText:#536770,rightChat:white,header_date:white,nav_header:#26C07C,active_back_color:white,info_name:#465B65,info_status:#BAB6B6,link_color:#115F91,chat_user_name:#63747C,call_line:#979797)
+);

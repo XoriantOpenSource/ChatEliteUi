@@ -1,0 +1,43 @@
+._transferChat{
+    text-align: center;
+    position: relative;
+
+    ._transferChat-Content{
+        margin-top : 35vh;
+        vertical-align: middle;
+    
+        ._iconRow{
+            color : #15B65A;
+            margin-bottom: 3%;
+        
+            div{
+                display: inline;
+            }
+            
+            img{
+                width: 60px;
+                height: 50px;
+            }
+
+            ._arrow{
+                -ms-transform: rotate(180deg); /* IE 9 */
+                -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+                transform: rotate(180deg);
+                padding-top: 1.2%;
+            }
+
+            ._checkCircle{
+                border-radius: 50%;
+                border: 3px solid #15B65A;
+            }
+        }
+
+        ._transfer-subject{
+            color: #455A64;	font-family: "Open Sans";	font-size: 25px;	font-weight: bold;	line-height: 34px;
+        }
+
+        ._finalLine{
+            color: #455A64;	font-family: "Open Sans";	font-size: 18px;	line-height: 24px;
+        }
+    }
+}

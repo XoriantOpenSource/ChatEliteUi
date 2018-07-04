@@ -1,0 +1,163 @@
+<div class="_groupsComponent _groupsComponent_c">
+    <div class="row _search">
+        <div data-intro="Search your group here " data-position="left" class="col m11">
+            <!-- <div class="chips-autocomplete"></div> -->
+            <input id="_groupsSearch" placeholder="Search here..." data-bind="value: $component.groupsQuery, valueUpdate: 'keyup'" />
+        </div>
+        <div class="col m1">
+            <!-- ko if: $component.groupsQuery() == '' -->
+            <i class="material-icons" data-bind="click : focusOnSearch">search</i>
+            <!-- /ko -->
+
+            <!-- ko ifnot: $component.groupsQuery() == '' -->
+            <i class="material-icons" data-bind="click : changeIcon">close</i>
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="row _createGroupButton">
+        <div class="col m2"></div>
+        <div data-intro="Click to create group here" data-position="left" class="col m8">
+            <a class="waves-effect waves-light btn modal-trigger blue" href="#_modal1">
+                <i class="material-icons left">group_add</i>
+                Create New Group
+            </a>
+        </div>
+        <div class="col m2"></div>
+    </div>
+    <div class="_groups-component _groups-component_c" data-bind="scrollBar:$component.searchGroupsResults()">
+        <ul class="collapsible" data-collapsible="expandable">
+            <!-- <li>
+                <div class="collapsible-header">
+                    Supported Groups
+                    <i class="material-icons">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body"> -->
+            <!-- for loop -->
+
+            <li>
+                <div class="collapsible-header active">Your Groups
+                    <i class="material-icons">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body">
+
+                    <!-- ko if: showLoader() -->
+                    <loader-component style="text-align: center;"></loader-component>
+                    <!-- /ko -->
+                    <!-- for loop -->
+                    <div class="_group_list" data-bind="foreach: $component.searchGroupsResults(),chardin:{'data_intro':'Click on the groups to view messages','data_position':'left',data:$component.groupArray().length}">
+                        <div class="row _user" data-bind="click: function() { $component.startChat.bind($component, $data)(); $component.onIndexSelected.bind($component, $index())() }">
+                            <div class="col m2 _group">
+                                <img src="${require(`./../../../../icons/icon-groups-active-40-40.svg`)}" alt="" class="circle responsive-img">
+                                <div class="_usersCount" data-bind="popOver :{trigger:'hover' , placement:'auto' , width: 250, title: subject, autoHide : 10000}, clickBubble: false">
+                                    <span data-bind="text : users().length"></span>
+                                    <div template data-bind='scrollBar'>
+                                        <div class='_group_members_count'>
+                                            Last active
+                                            <span data-bind="moment:{date_time:last_access_date,observe:$component.searchGroupsResults()}"></span>
+                                            <br>
+                                            <span data-bind="text : users().length"></span> people in group
+                                        </div>
+                                        <div data-bind="foreach : users()" class="_popOver">
+                                            <div class="row">
+                                                <div class="col m10">
+                                                    <span class="_group_member_user_name truncate" data-bind="text : user_name,  attr: { title : user_name}"></span>
+                                                </div>
+                                                <div class="col m1"></div>
+                                                <div class="col m1">
+                                                    <span data-bind="switch: online_status">
+                                                        <span data-bind="case: 1">
+                                                            <span class="onlineBadge onlineBadgeColor"></span>
+                                                        </span>
+                                                        <span data-bind="case: 2">
+                                                            <span class="onlineBadge awayBadgeColor"></span>
+                                                        </span>
+                                                        <span data-bind="case: 3">
+                                                            <span class="onlineBadge"></span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                </br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col m7">
+                                <div class="_chatInfo">
+                                    <p class="truncate" data-bind="text : subject,  attr: { title : subject}"></p>
+                                    <p class="truncate" data-bind="text : lastMessage ,  attr: { title : lastMessage}"></p>
+                                    <p>
+                                        <span data-bind="momentDate:last_access_date"></span>,
+                                        <span data-bind="moment:{date_time:last_access_date,observe:$component.searchGroupsResults()}"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col m1"></div>
+                            <div class="col m1">
+                            </div>
+                            <div class="col m1 _position-relative">
+                                <!-- ko if:  created_by_user._id == $component.current_user_obj()._id && isP2PChat == false-->
+                                <div class="fixed-action-btn horizontal">
+                                    <a href="#">
+                                        <i class="material-icons _menuIcon">more_vert</i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <div style="display: inline-block;" data-bind="popOver :{trigger:'click' , placement:'auto', width: '250px',padding:'false', title:'Delete Conversation'}">
+                                                <img src="${require(`./../../../../icons/icon-delete-red.svg`)}" alt="" class="responsive-img _slidInIcons" title="Remove Conversation"
+                                                />
+                                                <div template>
+                                                    <p></p>
+                                                    <div class="row">
+                                                        <div class="col m10 offset-m1 _warningText">
+                                                            * This conversation will be permanently deleted.Are you sure you want to delete it?.
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col m4 offset-m1">
+                                                            <button class="waves-effect waves-light btn light-blue _yesButton" data-bind="click:$component.removeUserRecent,clickBubble:false">Yes</button>
+                                                        </div>
+                                                        <div class="col m4 offset-m2">
+                                                            <button class="waves-effect waves-light btn grey _cancelButton" data-bind="click:$component.closePopover">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="_modal1" class="modal">
+    <div class="modal-content">
+        <h4>Create New
+            <strong>Group</strong>
+        </h4>
+        <input class="_title_group_modal" type="text" placeholder="Group title" data-bind="textInput : subject" style="width : 100%"
+        />
+    </div>
+    <h4>Add users to group</h4>
+    <select class="_select_group" data-bind="selectize: $component.allUsersArray, optionsCaption: 'Enter user name...', optionsValue : '_id', optionsText : 'user_name' , selectedOptions: $component.group_users , options: {plugins: ['remove_button'], dropdownParent : 'body', maxOptions : 5}"
+        multiple></select>
+    <hr class="_name_separator">
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn blue" href="#!" data-bind="click : chatGroupCreation">
+            <i class="material-icons left">group_add</i>
+            Create New Group
+        </a>
+
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat" data-bind="click:closeGroupModal">Close</a>
+    </div>
+</div>

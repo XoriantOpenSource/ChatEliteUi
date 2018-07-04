@@ -1,0 +1,310 @@
+._introComponent {
+    border-right: 1px solid #C8C8C8;
+    padding: 0 7%;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+    max-height: calc(100vh- 60px);
+    background-color: $_iComponent-background;
+    ._group_block {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        text-align: center;
+        border-radius: 4px;
+        background-color: $_box-background;
+        box-shadow: $box-shadows;
+        min-height: 31vh;
+        ._group_members {
+            margin-bottom: 5px;
+        }
+        ._image_group {
+            margin-top: 5%;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 3px solid #455A64;
+            background-color: white;
+        }
+        ._group_title {
+            color: #5E5C5C;
+            font-family: "Open Sans";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 19px;
+            margin-bottom: 0px;
+            img {
+                cursor: pointer;
+            }
+        }
+        ._group_member_count {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            color: #ADA8A8;
+            font-family: "Open Sans";
+            font-size: 10px;
+            font-style: italic;
+            line-height: 14px;
+        }
+        ._line {
+            margin-top: 4px;
+            box-sizing: border-box;
+            border: 1px solid #979797;
+            opacity: 0.09;
+        }
+        ._groupsUsersBlock {
+            max-height: 160px;
+            overflow-y: auto;
+        }
+        ._arrow_expand {
+            i {
+                color: #C6CCCF;
+                cursor: pointer;
+            }
+            i.active {
+                -ms-transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+    }
+    ._find_users {
+        width: 14%;
+        ._user {
+            margin-bottom: 5px;
+        }
+        ._user_name {
+            text-align: left;
+        }
+    }
+    ._add_user_ind_block {
+        text-align: center;
+        margin-bottom: 5px;
+        ._add_user_ind {
+            margin-top: 0 !important;
+            @extend ._add_user;
+            width: 40px !important;
+            height: 40px !important;
+            .material-icons {
+                padding: 7% 0 0 0 !important;
+            }
+        }
+    }
+    ._user_block {
+        text-align: center;
+        border-radius: 4px;
+        background-color: $_box-background;
+        box-shadow: $box-shadows;
+        ._user_chat_info,
+        ._user_location {
+            text-align: center;
+            font-weight: 600;
+            line-height: 14px;
+            color: #5E5C5C;
+            font-family: "Open Sans";
+            font-size: 10px;
+            line-height: 12px;
+        }
+        ._user_title {
+            color: #5E5C5C;
+            font-family: "Open Sans";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 19px;
+            text-align: center;
+            height: 19px;
+        }
+        ._image_user {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        ._online img {
+            border: 3px solid #15B65A;
+        }
+        ._offline img {
+            border: 3px solid #D0CFCB;
+            -webkit-filter: grayscale(100%);
+            /* Safari 6.0 - 9.0 */
+            filter: grayscale(100%);
+        }
+        ._away img {
+            border: 3px solid #F1C534;
+        }
+        ._group img {
+            border: 3px solid #485D67;
+        }
+    }
+    ._user_add_message,
+    {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-weight: 600;
+        line-height: 14px;
+        color: #5E5C5C;
+        font-family: "Open Sans";
+        font-size: 10px;
+    }
+    ._online img {
+        border: 3px solid #15B65A;
+    }
+    ._offline img {
+        border: 3px solid #D0CFCB;
+        -webkit-filter: grayscale(100%);
+        /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+    ._away img {
+        border: 3px solid #F1C534;
+    }
+    ._user_image {
+        margin-top: 10%;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: white;
+    }
+    ._add_user {
+        margin-top: 10%;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1px dashed #9EA6B0;
+        .material-icons {
+            padding: 14% 0 0 0;
+            color: #26C07C;
+            cursor: pointer;
+            font-size: 32px;
+        }
+    }
+    ._expand_more_row {
+        border-top: 1px solid #e8e8e8;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        ._expand_more {
+            cursor: pointer;
+        }
+    }
+    ._favorite_box,
+    ._link_box,
+    ._commonGroups_box {
+        padding: 3%;
+        border-radius: 4px;
+        background-color: $_box-background;
+        box-shadow: $box-shadows;
+        margin-bottom: 5px;
+        min-height: 26vh;
+    }
+    ._favorite_box {
+        margin-bottom: 5%;
+    }
+    ._link_box {
+        margin-bottom: 2px;
+        min-height: 30vh;
+    }
+    ._favourite_icon,
+    ._links_shared,
+    ._commonGroups_icon {
+        color: #5E5C5C;
+        font-family: "Open Sans";
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 17px;
+    }
+    ._header-separator {
+        border: 1px dotted #979797;
+        margin: 7px 0px;
+    }
+    ._favourite-content,
+    ._link_content,
+    ._commonGroups-content {
+        margin-bottom: 5%;
+        max-height: calc(100vh - 82.4vh);
+        height: calc(100vh - 82.4vh);
+        overflow-y: auto;
+    }
+    ._contract-content {
+        max-height: calc(100vh - 82.4vh);
+        height: calc(100vh - 82.4vh);
+    }
+    ._favourite-content ._fav_message,
+    ._link_content ._link_text {
+        color: #5E5C5C;
+        font-family: "Open Sans";
+        font-size: 10px;
+        line-height: 12px;
+    }
+    ._favourite-content ._fav_date,
+    ._link_content ._link_date {
+        color: #B3ACAC;
+        font-family: "Open Sans";
+        font-size: 9px;
+        font-style: italic;
+        line-height: 13px;
+    }
+    ._fav_message p,
+    ._grpName p {
+        margin: 0 !important;
+    }
+    ._commonGroups-content ._grpName {
+        color: #455A64;
+        font-family: "Open Sans";
+        font-size: 12px;
+        line-height: 25px;
+    }
+    ._loader_content {
+        margin-top: 15% !important;
+    }
+}
+
+._removeUser{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 40px;
+    background-color: #DF726F;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    height: 25%;
+    width: 25%;
+    text-align: center;
+    font-weight: 500;
+    z-index: 2;
+}
+
+._introComponent {
+    @include add_theme(null, background_color, card_background_color);
+    ._favorite_box,
+    ._favorite_box,
+    ._commonGroups_box,
+    ._link_box,
+    ._group_block,
+    ._user_back,
+    ._add_user_ind_block {
+        @include add_theme(color, card_background_color);
+    }
+    ._user_title,
+    ._group_title,
+    ._favourite_icon,
+    ._fav_message,
+    ._links_shared,
+    ._link_text,
+    ._link_date,
+    ._commonGroups_icon,
+    ._grpName {
+        @include add_theme(intro_title, null);
+    }
+    ._user_chat_info,
+    ._user_add_message,
+    ._group_member_count {
+        @include add_theme(intro_status, null);
+    }
+    ._search input {
+        @include add_theme(intro_title, null, intro_title);
+    }
+    ._search input:focus {
+        @include add_theme(null, null, input_active_color);
+    }
+}

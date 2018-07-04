@@ -1,0 +1,31 @@
+.row {
+    margin-bottom: 0px;
+}
+
+.row .col {
+    padding: 0px;
+}
+
+.__collab_init_c {
+    @include add_theme(null, background_color);
+    position: fixed !important;
+    bottom: 0px;
+    right: 0px;
+    width: 45vh;
+}
+
+.__chatComponent_c {
+    width: 42vh;
+    position: fixed !important;
+    bottom: 0;
+    right: 47vh;
+    z-index: 1;
+    margin-right: 1%;
+}
+
+
+._infoComponent_c {
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+}
+

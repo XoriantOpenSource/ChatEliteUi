@@ -1,0 +1,11 @@
+.row{
+    margin-bottom: 0px;
+}
+
+.row .col{
+	padding:0px;
+}
+
+.__collab_init{
+    @include add_theme(null,background_color);
+}
