@@ -81,6 +81,13 @@ Start the UI application using NPM start.
 2.	**ChatEliteService**: This repository contains the server-side code which includes business logic, database queries, Socket APIs, REST APIs and API call execution methods.The documentation for this repository is available [here](https://xoriantopensource.github.io/ChatEliteService/).
 3.	**ChatEliteUi**: This repository contains the code for UI which includes HTML and view-related files.The documentation for this repository is available [here](https://xoriantopensource.github.io/ChatEliteUi/).
 
+* Before execution on localhost install - 
+  * **typescript** using following command : **typescript** is used to compile the code to javascript
+    * ```npm install -g typescript```
+
+ * **forever** using following command : **forever** is used to daemonize the process
+    * ```npm install forever -g```
+
 ###	Execution on localhost
 
 *	Download and unzip **T-web API Repository**
