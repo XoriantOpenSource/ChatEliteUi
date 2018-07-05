@@ -6,6 +6,16 @@
 	padding:0px;
 }
 
+.init_chat{
+    .__chatIcon{
+        cursor : pointer;
+    }
+
+    text-align: center;
+    background-color: white;
+    margin-top: 28vh;
+}
+
 .__collab_init{
     @include add_theme(null,background_color);
 }
