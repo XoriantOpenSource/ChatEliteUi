@@ -31,7 +31,7 @@ One of the most important features that ChatElite holds, is its easy use. Here a
 
 *	**Git**
     * **On Windows**:
-        * Download the latest Git for Windows installer.
+        * Download the latest [Git for Windows installer](https://gitforwindows.org/).
         * When you have successfully started the installer, you will see the Git Setup Wizard screen. Follow the Next and Finish prompts to complete the installation.
         *	Open a Command Prompt (or Git Bash if during installation you elected not to use Git from the Windows Command Prompt).
         *	Run the following commands to configure your Git username and email using the following commands. 
@@ -41,13 +41,18 @@ $ git config --global user.email “email id”
 ```
 
 
-*	**On Linux/Mac**: To install on a Linux or a Mac, follow these instructions.
+*	**On Linux/Mac**: To install on a Linux or a Mac, follow [these](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instructions.
 
-    *	**Node**: Follow these instructions to download and install Node.js according to your operating system.
+    *	**Node**: Follow [these](https://nodejs.org/en/download/) instructions to download and install Node.js according to your operating system.
 
-    *	**Mongo**: Follow these instructions to download and install Mongo DB according to your operating system and requirement.
+    *	**Mongo**: Follow [these](https://docs.mongodb.com/manual/installation/#mongodb-community-edition) instructions to download and install Mongo DB according to your operating system and requirement.
 
-    *	**Visual Studio**: It is recommended. However, you can use any other editor. Follow these instructions to install Visual Studio.
+    *	**Visual Studio Code**: It is recommended. However, you can use any other editor. Follow [these](https://code.visualstudio.com/download) instructions to install Visual Studio Code.
+
+
+* Dependency on **node-sass**
+    *  **node-sass** dependency specifically requires **node-gyp** build tool requires **Python 2.7** and **VCBuild.exe** for Windows.
+    Follow the [instructions](https://github.com/sass/node-sass#install) to install clean build of node-sass.
 
 
 ##	System Design
@@ -94,20 +99,28 @@ Start the UI application using NPM start.
     *	https://chatelite.xoriant.com/t-webapi.zip
 
 *	Go to **T-web API Repository**
-    *	```npm install```
+    *	```npm install```  
+        (Prefer installing node modules with administrator privileges from terminal.)
     *	```npm link```
 
 *	Start **Mongo server**
-    * On the mongodb terminal execute the following command 
-        * mongod 
+    
+    * Go to the folder where your Mongo binaries are installed.
+        * Your_MongoDB_Folder/bin/mongod.exe
+        * For [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#start-your-mongodb-database)
+        * For [Linux Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#start-mongodb)
+        * For [Linux Red Hat](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#start-mongodb)
+        * For [Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#id6)
 
-*	Go to **Service repository**
+*	Go to [**Service repository**](https://github.com/XoriantOpenSource/ChatEliteService)
     *	```npm install```
-    *   Compile using command ```tsc``` or using short cut Ctrl+Shift+b
-    *	Run the service using command ```node app.js``` or run in debug mode (for development) using VSC debug command
+        (Prefer installing node modules with administrator privileges from terminal.)
+    *   Compile using command ```tsc```;if you are using VSCode you may compile using short cut command Ctrl+Shift+b 
+    *	Run the service using command ```node app.js``` or run in debug mode (for development) using VSCode debug command
 
-*	Go to **Web-UI repository**
-    *	```npm install``` (installs all in package.json)
+*	Go to [**Web-UI repository**](https://github.com/XoriantOpenSource/ChatEliteUi)
+    *	```npm install```
+         (Prefer installing node modules with administrator privileges from terminal.)
     *	```npm start```
 
 *	Go to browser, in the address bar enter https://localhost:1234
