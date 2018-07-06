@@ -93,7 +93,7 @@
 				<ul>
 					<li><strong>Git</strong><ul>
 							<li><strong>On Windows</strong>:<ul>
-									<li>Download the latest Git for Windows installer.</li>
+									<li>Download the latest <a href="https://gitforwindows.org/">Git for Windows installer</a>.</li>
 									<li>When you have successfully started the installer, you will see the Git Setup Wizard screen. Follow the Next and Finish prompts to complete the installation.</li>
 									<li>Open a Command Prompt (or Git Bash if during installation you elected not to use Git from the Windows Command Prompt).</li>
 									<li>Run the following commands to configure your Git username and email using the following commands. <pre><code>$ git<span class="hljs-built_in"> config </span>--global user.name “user name”
@@ -105,14 +105,21 @@ $ git<span class="hljs-built_in"> config </span>--global user.email “email id�
 					</li>
 				</ul>
 				<ul>
-					<li><p><strong>On Linux/Mac</strong>: To install on a Linux or a Mac, follow these instructions.</p>
+					<li><p><strong>On Linux/Mac</strong>: To install on a Linux or a Mac, follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">these</a> instructions.</p>
 						<ul>
-							<li><p><strong>Node</strong>: Follow these instructions to download and install Node.js according to your operating system.</p>
+							<li><p><strong>Node</strong>: Follow <a href="https://nodejs.org/en/download/">these</a> instructions to download and install Node.js according to your operating system.</p>
 							</li>
-							<li><p><strong>Mongo</strong>: Follow these instructions to download and install Mongo DB according to your operating system and requirement.</p>
+							<li><p><strong>Mongo</strong>: Follow <a href="https://docs.mongodb.com/manual/installation/#mongodb-community-edition">these</a> instructions to download and install Mongo DB according to your operating system and requirement.</p>
 							</li>
-							<li><p><strong>Visual Studio</strong>: It is recommended. However, you can use any other editor. Follow these instructions to install Visual Studio.</p>
+							<li><p><strong>Visual Studio Code</strong>: It is recommended. However, you can use any other editor. Follow <a href="https://code.visualstudio.com/download">these</a> instructions to install Visual Studio Code.</p>
 							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>Dependency on <strong>node-sass</strong><ul>
+							<li><strong>node-sass</strong> dependency specifically requires <strong>node-gyp</strong> build tool requires <strong>Python 2.7</strong> and <strong>VCBuild.exe</strong> for Windows.
+							Follow the <a href="https://github.com/sass/node-sass#install">instructions</a> to install clean build of node-sass.</li>
 						</ul>
 					</li>
 				</ul>
@@ -160,28 +167,34 @@ $ git<span class="hljs-built_in"> config </span>--global user.email “email id�
 					</li>
 					<li><p>Go to <strong>T-web API Repository</strong></p>
 						<ul>
-							<li><code>npm install</code></li>
+							<li><code>npm install</code><br>(Prefer installing node modules with administrator privileges from terminal.)</li>
 							<li><code>npm link</code></li>
 						</ul>
 					</li>
 					<li><p>Start <strong>Mongo server</strong></p>
 						<ul>
-							<li>On the mongodb terminal execute the following command <ul>
-									<li>mongod </li>
+							<li>Go to the folder where your Mongo binaries are installed.<ul>
+									<li>Your_MongoDB_Folder/bin/mongod.exe</li>
+									<li>For <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#start-your-mongodb-database">Windows</a></li>
+									<li>For <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#start-mongodb">Linux Ubuntu</a></li>
+									<li>For <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#start-mongodb">Linux Red Hat</a></li>
+									<li>For <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#id6">Mac OS</a></li>
 								</ul>
 							</li>
 						</ul>
 					</li>
-					<li><p>Go to <strong>Service repository</strong></p>
+					<li><p>Go to <a href="https://github.com/XoriantOpenSource/ChatEliteService"><strong>Service repository</strong></a></p>
 						<ul>
-							<li><code>npm install</code></li>
-							<li>Compile using command <code>tsc</code> or using short cut Ctrl+Shift+b</li>
-							<li>Run the service using command <code>node app.js</code> or run in debug mode (for development) using VSC debug command</li>
+							<li><code>npm install</code>
+							(Prefer installing node modules with administrator privileges from terminal.)</li>
+							<li>Compile using command <code>tsc</code>;if you are using VSCode you may compile using short cut command Ctrl+Shift+b </li>
+							<li>Run the service using command <code>node app.js</code> or run in debug mode (for development) using VSCode debug command</li>
 						</ul>
 					</li>
-					<li><p>Go to <strong>Web-UI repository</strong></p>
+					<li><p>Go to <a href="https://github.com/XoriantOpenSource/ChatEliteUi"><strong>Web-UI repository</strong></a></p>
 						<ul>
-							<li><code>npm install</code> (installs all in package.json)</li>
+							<li><code>npm install</code>
+							(Prefer installing node modules with administrator privileges from terminal.)</li>
 							<li><code>npm start</code></li>
 						</ul>
 					</li>
