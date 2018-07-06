@@ -35,19 +35,18 @@ One of the most important features that ChatElite holds, is its easy use. Here a
         * When you have successfully started the installer, you will see the Git Setup Wizard screen. Follow the Next and Finish prompts to complete the installation.
         *	Open a Command Prompt (or Git Bash if during installation you elected not to use Git from the Windows Command Prompt).
         *	Run the following commands to configure your Git username and email using the following commands. 
-```
-$ git config --global user.name “user name”
-$ git config --global user.email “email id”
-```
+        ```
+            $ git config --global user.name “user name”
+            $ git config --global user.email “email id”
+        ```
 
+    * **On Linux/Mac**: To install on a Linux or a Mac, follow [these](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instructions.
 
-*	**On Linux/Mac**: To install on a Linux or a Mac, follow [these](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instructions.
+*	**Node**: Follow [these](https://nodejs.org/en/download/) instructions to download and install Node.js according to your operating system.
 
-    *	**Node**: Follow [these](https://nodejs.org/en/download/) instructions to download and install Node.js according to your operating system.
+*	**Mongo**: Follow [these](https://docs.mongodb.com/manual/installation/#mongodb-community-edition) instructions to download and install Mongo DB according to your operating system and requirement.
 
-    *	**Mongo**: Follow [these](https://docs.mongodb.com/manual/installation/#mongodb-community-edition) instructions to download and install Mongo DB according to your operating system and requirement.
-
-    *	**Visual Studio Code**: It is recommended. However, you can use any other editor. Follow [these](https://code.visualstudio.com/download) instructions to install Visual Studio Code.
+*	**Visual Studio Code**: It is recommended. However, you can use any other editor. Follow [these](https://code.visualstudio.com/download) instructions to install Visual Studio Code.
 
 
 * Dependency on **node-sass**
@@ -99,8 +98,7 @@ Start the UI application using NPM start.
     *	https://chatelite.xoriant.com/t-webapi.zip
 
 *	Go to **T-web API Repository**
-    *	```npm install```  
-        (Prefer installing node modules with administrator privileges from terminal.)
+    *	```npm install```
     *	```npm link```
 
 *	Start **Mongo server**
@@ -114,13 +112,12 @@ Start the UI application using NPM start.
 
 *	Go to [**Service repository**](https://github.com/XoriantOpenSource/ChatEliteService)
     *	```npm install```
-        (Prefer installing node modules with administrator privileges from terminal.)
     *   Compile using command ```tsc```;if you are using VSCode you may compile using short cut command Ctrl+Shift+b 
     *	Run the service using command ```node app.js``` or run in debug mode (for development) using VSCode debug command
 
 *	Go to [**Web-UI repository**](https://github.com/XoriantOpenSource/ChatEliteUi)
     *	```npm install```
-         (Prefer installing node modules with administrator privileges from terminal.)
+         (Prefer installing node modules with administrator privileges from terminal/cmd so that it can install node-sass dependencies automatically.)
     *	```npm start```
 
 *	Go to browser, in the address bar enter https://localhost:1234
