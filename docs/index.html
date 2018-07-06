@@ -91,8 +91,10 @@
 				</ul>
 				<h2 id="prerequisites">Prerequisites</h2>
 				<ul>
-					<li><strong>Git</strong><ul>
-							<li><strong>On Windows</strong>:<ul>
+					<li><p><strong>Git</strong></p>
+						<ul>
+							<li><p><strong>On Windows</strong>:</p>
+								<ul>
 									<li>Download the latest <a href="https://gitforwindows.org/">Git for Windows installer</a>.</li>
 									<li>When you have successfully started the installer, you will see the Git Setup Wizard screen. Follow the Next and Finish prompts to complete the installation.</li>
 									<li>Open a Command Prompt (or Git Bash if during installation you elected not to use Git from the Windows Command Prompt).</li>
@@ -101,19 +103,15 @@ $ git<span class="hljs-built_in"> config </span>--global user.email â€œemail idâ
 </code></pre></li>
 								</ul>
 							</li>
+							<li><p><strong>On Linux/Mac</strong>: To install on a Linux or a Mac, follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">these</a> instructions.</p>
+							</li>
 						</ul>
 					</li>
-				</ul>
-				<ul>
-					<li><p><strong>On Linux/Mac</strong>: To install on a Linux or a Mac, follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">these</a> instructions.</p>
-						<ul>
-							<li><p><strong>Node</strong>: Follow <a href="https://nodejs.org/en/download/">these</a> instructions to download and install Node.js according to your operating system.</p>
-							</li>
-							<li><p><strong>Mongo</strong>: Follow <a href="https://docs.mongodb.com/manual/installation/#mongodb-community-edition">these</a> instructions to download and install Mongo DB according to your operating system and requirement.</p>
-							</li>
-							<li><p><strong>Visual Studio Code</strong>: It is recommended. However, you can use any other editor. Follow <a href="https://code.visualstudio.com/download">these</a> instructions to install Visual Studio Code.</p>
-							</li>
-						</ul>
+					<li><p><strong>Node</strong>: Follow <a href="https://nodejs.org/en/download/">these</a> instructions to download and install Node.js according to your operating system.</p>
+					</li>
+					<li><p><strong>Mongo</strong>: Follow <a href="https://docs.mongodb.com/manual/installation/#mongodb-community-edition">these</a> instructions to download and install Mongo DB according to your operating system and requirement.</p>
+					</li>
+					<li><p><strong>Visual Studio Code</strong>: It is recommended. However, you can use any other editor. Follow <a href="https://code.visualstudio.com/download">these</a> instructions to install Visual Studio Code.</p>
 					</li>
 				</ul>
 				<ul>
@@ -167,7 +165,7 @@ $ git<span class="hljs-built_in"> config </span>--global user.email â€œemail idâ
 					</li>
 					<li><p>Go to <strong>T-web API Repository</strong></p>
 						<ul>
-							<li><code>npm install</code><br>(Prefer installing node modules with administrator privileges from terminal.)</li>
+							<li><code>npm install</code></li>
 							<li><code>npm link</code></li>
 						</ul>
 					</li>
@@ -185,8 +183,7 @@ $ git<span class="hljs-built_in"> config </span>--global user.email â€œemail idâ
 					</li>
 					<li><p>Go to <a href="https://github.com/XoriantOpenSource/ChatEliteService"><strong>Service repository</strong></a></p>
 						<ul>
-							<li><code>npm install</code>
-							(Prefer installing node modules with administrator privileges from terminal.)</li>
+							<li><code>npm install</code></li>
 							<li>Compile using command <code>tsc</code>;if you are using VSCode you may compile using short cut command Ctrl+Shift+b </li>
 							<li>Run the service using command <code>node app.js</code> or run in debug mode (for development) using VSCode debug command</li>
 						</ul>
@@ -194,7 +191,7 @@ $ git<span class="hljs-built_in"> config </span>--global user.email â€œemail idâ
 					<li><p>Go to <a href="https://github.com/XoriantOpenSource/ChatEliteUi"><strong>Web-UI repository</strong></a></p>
 						<ul>
 							<li><code>npm install</code>
-							(Prefer installing node modules with administrator privileges from terminal.)</li>
+							(Prefer installing node modules with administrator privileges from terminal/cmd so that it can install node-sass dependencies automatically.)</li>
 							<li><code>npm start</code></li>
 						</ul>
 					</li>
